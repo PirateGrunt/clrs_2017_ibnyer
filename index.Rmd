@@ -1,0 +1,122 @@
+---
+title: "The Actuary and IBNR and IBNYR and IBNER"
+variant: markdown_github
+bibliography: bibliography.bib
+output:
+  revealjs::revealjs_presentation:
+    css: revealOpts.css
+    theme: solarized
+    transition: slide
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+  tufte::tufte_handout: default
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo=FALSE)
+```
+
+```{r}
+library(pander)
+library(dplyr)
+```
+
+# The problem
+
+## The problem
+
+* Split total reserve into IBNYR and IBNER
+* The problem is with our _data_ not our algorithms
+* Stochastic process for individual claims
+* 
+
+## What I'll show you
+
+* Detailed walk through of an example first proposed by Guszcza and Lommele.
+* Comment on how this fits with aggregate methods
+    * Bifurcated data
+    * Hierarchical models
+    * Bayesian
+* Easy stan walk through
+* Stan for individual claims
+
+## What I won't talk about:
+
+* 
+
+# Tiny bit of history
+
+# Toy Example
+
+```{r echo=FALSE}
+load("ToyExample.rda")
+```
+
+## The parameters
+
+## First cut
+
+```{r echo = FALSE, results='asis'}
+# dfTri <- dfTri %>% 
+#   mutate(AY = as.character(AY))
+# pandoc.table(dfTri, big.mark = ",", missing = "", style = 'rmarkdown')
+```
+
+This is painfully easy to develop. So what's the big deal?
+
+## Here's the (soon-to-be) big deal
+
+* For starters, we have no idea about the split between IBNYR and IBNER. The 12-24 month development is a combination of the two.
+* Our losses were not stochastic. Imagine a scenario where a claim was reported on January 1 rather than January 31. [Hang on, though. This would put that claim as a first report @24 months claim.]
+* What's significant is that there are differences between initial report X and initial report Y.
+* The number of claims reported to date is _always_ IBNYR.
+* We can regress on the number of open claims. Our intuition tells us that IBNER and IBNYR have have different relationships. 
+    * IBNER is positively correlated to open claims. As open claims goes down, incremental development also goes down.
+    * IBNYR may have an inverse relationship at earlier development stages. Fewer claims means that I'm going to see more reported.
+  * We may now model independently. For more recent periods, we may posit a model for the number of claims, which utilizes our IBNER factors estimated from a prior period.
+
+##
+
+IBNYR
+
+```{r results='asis'}
+# pandoc.table(dfTriIBNYR, big.mark = ",", missing = "")
+```
+
+IBNER
+
+```{r results='asis'}
+# pandoc.table(dfTriIBNER, big.mark = ",", missing = "")
+```
+
+# Not-so toy example
+
+##
+
+* 
+
+# Final thoughts
+
+## Why aren't you fitting individual claims?
+
+* I would love to, but honestly, I rarely see actuaries care about doing that.
+* This method is a ready analogue to established techniques and can hopefully serve as an on-ramp for actuaries to:
+    1. Complain about how much data they're throwing away and 
+    2. Move the focus to individual claims
+
+## When does this make sense mathematically?
+
+* When the financial amount (payment or reserve) depends meaningfully on intial or later report
+* When the initial amount depends meaningfully on _when_ it is initial
+
+## When does this make sense practically?
+
+* 
+
+## Read everything here:
+
+http://pirategrunt.com/CLRS2017/IBNYER
+
+## References
+

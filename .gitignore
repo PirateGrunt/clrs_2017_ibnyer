@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+*.rda
+sandbox/
+Rplots.pdf
+Presentation.pdf
+Presentation.tex
+Presentation.html

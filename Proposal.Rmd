@@ -1,0 +1,6 @@
+---
+title: "The Actuary and the IBNYR and the IBNER"
+output: word_document
+---
+
+Actuaries have long understood that total reserve may be decomposed between claims which have not yet been reported (IBNYR) and development on claims which have already been reported (IBNER). However, to date, no algorithms have been widely adopted which feature the separation of those elements of total IBNR. This may be due to actuaries' tacit acceptance of how data is commonly stored and used for analysis. When aggregate loss data is divided into its IBNYR and IBNER components, standard methods may be easily used to form estimates for the individual and total components of reserve. This is a great boon to decision makers who are able to distinguish between distinct sources of reserve uncertainty and plan accordingly.
