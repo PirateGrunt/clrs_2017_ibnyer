@@ -850,16 +850,14 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section><section id="ibner-ibnyr---incremental" class="slide level2">
 <h1>IBNER &amp; IBNYR - Incremental</h1>
 <p><img src="index_files/figure-revealjs/unnamed-chunk-13-1.png" width="768" /></p>
-</section><section id="crazy-thoughts" class="slide level2">
-<h1>Crazy thoughts</h1>
+</section><section id="discussion" class="slide level2">
+<h1>Discussion</h1>
 <ul>
 <li>If you were ever presented with two triangles, would you use both?</li>
+<li>How?</li>
 </ul>
-</section><section id="section" class="slide level2">
-<h1></h1>
-<p>Poll question !!!</p>
-</section><section id="more-crazy-thoughts" class="slide level2">
-<h1>More crazy thoughts</h1>
+</section><section id="crazy-thoughts" class="slide level2">
+<h1>Crazy thoughts</h1>
 <ul>
 <li>Linear model applies equally to IBNYR as IBNR and IBNER</li>
 <li>Why not estimate both at the same time?</li>
@@ -878,6 +876,81 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <p><strong>Hang on.</strong> You just said <em>if</em> we have individual claim data? Isn’t that where aggregate triangles come from?</p>
 </section><section id="dealing-with-data-3" class="slide level2">
 <h1>Dealing with data</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">OccurrenceDate</th>
+<th style="text-align: left;">ReportDate</th>
+<th style="text-align: left;">PaymentDate</th>
+<th style="text-align: left;">PaymentAmount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2001-01-30</td>
+<td style="text-align: left;">2001-03-26</td>
+<td style="text-align: left;">2001-03-26</td>
+<td style="text-align: left;">108</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2001-01-30</td>
+<td style="text-align: left;">2001-03-26</td>
+<td style="text-align: left;">2001-03-26</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2001-01-30</td>
+<td style="text-align: left;">2001-03-26</td>
+<td style="text-align: left;">2001-03-26</td>
+<td style="text-align: left;">2,817</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2001-01-30</td>
+<td style="text-align: left;">2001-03-26</td>
+<td style="text-align: left;">2001-04-04</td>
+<td style="text-align: left;">840</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2001-01-30</td>
+<td style="text-align: left;">2001-03-26</td>
+<td style="text-align: left;">2001-04-04</td>
+<td style="text-align: left;">446</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2001-02-24</td>
+<td style="text-align: left;">2003-09-24</td>
+<td style="text-align: left;">2004-02-22</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2001-02-24</td>
+<td style="text-align: left;">2003-09-24</td>
+<td style="text-align: left;">2004-02-23</td>
+<td style="text-align: left;">48,349</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2001-02-24</td>
+<td style="text-align: left;">2003-09-24</td>
+<td style="text-align: left;">2004-02-23</td>
+<td style="text-align: left;">1,232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2001-02-24</td>
+<td style="text-align: left;">2003-09-24</td>
+<td style="text-align: left;">2004-02-23</td>
+<td style="text-align: left;">384</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2001-02-24</td>
+<td style="text-align: left;">2003-09-24</td>
+<td style="text-align: left;">2004-02-27</td>
+<td style="text-align: left;">2</td>
+</tr>
+</tbody>
+</table>
+</section><section id="section" class="slide level2">
+<h1></h1>
+<p>The first record in that table is the IBNYR record.</p>
 <pre class="{"><code>df &lt;- dfClaims %&gt;% 
   arrange(ClaimID, PaymentDate) %&gt;% 
   group_by(ClaimID) %&gt;% 
@@ -909,10 +982,10 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <p>How did that turn out?</p>
 </section><section id="are-the-methods-any-different" class="slide level2">
 <h1>Are the methods any different?</h1>
-<p><img src="index_files/figure-revealjs/unnamed-chunk-15-1.png" width="768" /></p>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-16-1.png" width="768" /></p>
 </section><section id="are-the-methods-accurate" class="slide level2">
 <h1>Are the methods accurate?</h1>
-<p><img src="index_files/figure-revealjs/unnamed-chunk-16-1.png" width="768" /></p>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-17-1.png" width="768" /></p>
 </section><section id="what-does-it-all-mean" class="slide level2">
 <h1>What does it all mean?</h1>
 <ol type="1">
@@ -932,13 +1005,13 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <p>Use the additive method! It’s Brian’s favorite!</p>
 </section><section id="additive" class="slide level2">
 <h1>Additive</h1>
-<p><img src="index_files/figure-revealjs/unnamed-chunk-17-1.png" width="768" /></p>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-18-1.png" width="768" /></p>
 </section><section id="actually-that-wont-make-a-difference" class="slide level2">
 <h1>Actually, that won’t make a difference</h1>
 <p>Same predictor in a linear model means that we can just add the result.</p>
 </section><section id="are-the-additive-methods-accurate" class="slide level2">
 <h1>Are the additive methods accurate?</h1>
-<p><img src="index_files/figure-revealjs/unnamed-chunk-18-1.png" width="768" /></p>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-19-1.png" width="768" /></p>
 <!--
 ## Esimate IBNER from IBNYR
 
